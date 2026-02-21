@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Nunito+Sans:wght@400;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  /* Colors */
+  --color-primary: #facc15;    /* Replace with your primary hex */
+  --color-secondary: #0d47a1;  /* Replace with your secondary hex */
+
+  /* Fonts */
+  --font-primary: "Montserrat", sans-serif;
+  --font-secondary: "Nunito Sans", sans-serif;
+}
+
+
+
+
+/* Swiper styling (regular CSS) */
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.swiper-button-prev {
+  display: none !important;
+}
+
+.swiper-button-next {
+  @apply bg-gray-200 p-5 rounded-full z-50 shadow-md; /* ✅ works if this file is imported */
+}
+
+.swiper-button-prev:after,
+.swiper-button-next:after {
+  font-size: 16px !important;
+  @apply text-green-500;
+}
+
+/* Button using Tailwind custom colors/fonts */
+.btn-primary {
+  @apply bg-yellow-400 px-12 py-2 rounded-md text-base font-secondary font-bold hover:bg-yellow-600 hover:text-white transition-all duration-200 cursor-pointer;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
