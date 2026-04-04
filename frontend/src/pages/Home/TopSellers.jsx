@@ -18,7 +18,10 @@ const TopSellers = () => {
 
     const [selectedcategory,Setselectedcategory] = useState("choose a genre")
 
-    const {data: books=[]} = useFetchAllBooksQuery();
+    const { data: books = [], isLoading, isError, error } = useFetchAllBooksQuery();
+
+      if (isLoading) return <div>Loading Books...</div>;
+      if (isError) return <div>Error: {error?.message || "Could not fetch books"}</div>;
 
     const filteredBooks = selectedcategory === "choose a genre" ?
                                                 books : books.filter(book =>

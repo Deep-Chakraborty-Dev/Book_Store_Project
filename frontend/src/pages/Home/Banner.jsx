@@ -14,9 +14,6 @@ const Banner = () => {
             <p className='py-4 text-2xl text-gray-400'>
                 This week’s pick is the kind of book that quietly earns a place in your hands and refuses to let go. Thoughtful, beautifully written, and impossible to rush, it’s a reminder of why we read in the first place — to slow down, to feel something, and to get lost for a while.
             </p>
-            <button className='btn-primary'>
-                Subsribe
-            </button>
         </div>
         
     </div>

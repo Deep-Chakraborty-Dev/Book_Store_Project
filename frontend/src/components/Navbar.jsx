@@ -7,16 +7,22 @@ import { GoHeart } from "react-icons/go";
 import { FaShoppingCart } from "react-icons/fa";
 import avatarImg from "../assets/avatar.png"
 import { useSelector } from 'react-redux';
+import { useAuth } from '../context/AuthContext';
 
 const navigation = [
-    {name:"Dashboard", href:"/dashboard"},
     {name:"Cart Page", href:"/cart"},
     {name:"Orders", href:"/orders"},
     {name:"Check Out", href:"/checkout"},
 ]
 
 const Navbar = () => {
-  const currentUser = true;
+
+  const {currentUser,logout} = useAuth()
+
+  const handleLogOut = () => {
+    logout()
+  }
+
   const [isDropDownOpen,setIsDropDown] = useState(false)
   console.log(isDropDownOpen)
 
@@ -29,20 +35,9 @@ const Navbar = () => {
 
             {/*left side*/}
             <div className='flex items-center md:gap-10 gap-4'>
-                <Link to="/">
-                <FaBarsStaggered className='size-6'/>
-                </Link>
 
-            <div className='flex flex-row text-2xl font-bold items-center underline text-amber-400'>
+            <div className='flex flex-row text-2xl font-bold items-center underline text-amber-400 transition-transform duration-150 ease-out hover:scale-125'>
                 <Link to={'/'}>BOOKNEST</Link></div>
-
-            <div className='relative'>
-                {/*search bar*/}
-                <Link to="/">
-                <BsSearch className='absolute inline-block left-3 inset-y-2' />
-                <input type='text' placeholder='Search...' className='bg-blue-100 w-full py-1 md:px-8 px-6 rounded-md focus:outline-none'></input>
-                </Link>
-            </div>
 
                 
             </div>
@@ -58,18 +53,25 @@ const Navbar = () => {
                         {/*show dropdowns*/}
                         {
                             isDropDownOpen && (
-                              <div className='absolute right-0 mt-2 w-40 bg-primary shadow-lg rounded-md z-40'>
+                              <div className='absolute right-0 mt-2 w-40 shadow-lg z-40  rounded-2xl opacity-95'>
                                     <ul className='py-2'>
                                         {
                                             navigation.map((item)=>(
                                                 <li key={item.name}>
                                                     <Link to={item.href}
-                                                    className='block px-4 py-2 text-sm  hover:bg-amber-500'>
+                                                    className='block px-4 py-2 text-sm  bg-gray-400   hover:bg-gray-500 transition-transform duration-150'>
                                                     {item.name}
                                                     </Link>
                                                 </li>
                                             ))
                                         }
+                                        <li>
+                                            
+                                            <button onClick={() => handleLogOut()}
+                                            className='block w-full text-left px-4 py-2 text-sm bg-red-400 hover:bg-red-500 transition-transform duration-150'>
+                                                Logout
+                                            </button>
+                                        </li>
                                     </ul>
                                 </div>
                             )

@@ -15,9 +15,6 @@ function Footer() {
           <h4 className="text-yellow-300">Quick Links</h4>
           <ul style={styles.list} className="text-shadow-amber-200">
             <li><a href="/" style={styles.link}>Home</a></li>
-            <li><a href="/shop" style={styles.link}>Shop</a></li>
-            <li><a href="/about" style={styles.link}>About</a></li>
-            <li><a href="/contact" style={styles.link}>Contact</a></li>
           </ul>
         </div>
 

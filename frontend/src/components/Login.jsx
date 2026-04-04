@@ -1,23 +1,51 @@
-import React, { useState } from 'react'
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
 import { useForm } from "react-hook-form"
+import { useAuth } from '../context/AuthContext';
 
 
 const Login = () => {
+    const navigate = useNavigate();
     const [message,setMessage]=useState("")
     const {
         register,
         handleSubmit,
         watch,
         formState: { errors },
+        reset,
   } = useForm()
 
-  const onSubmit = (data) => console.log(data)
+  const {loginUser,signInWithGoogle} = useAuth()
 
-  const handleGoogleSignIn = () => {
-    
+  const onSubmit = async (data) => {
+    try {
+        await loginUser(data.email,data.password)
+        alert("login successfull")
+        navigate("/")
+        
+    } catch (error) {
+        setMessage("Please provide a valid email or password")
+        console.log(error);
+    }
   }
+
+  const handleGoogleSignIn = async () => {
+    try {
+        await signInWithGoogle()
+        alert("Successfully Login with google")
+    } catch (error) {
+        alert("failed to login with google ")
+    }
+  }
+
+  useEffect(()=>{
+    reset({
+        email:'',
+        password:''
+    }
+    )
+  },[reset])
 
   return (
     <div className='h-[calc(100vh-120px)] flex justify-center items-center'>
@@ -25,13 +53,13 @@ const Login = () => {
             <h2 className='text-xl font-semibold mb-4'>
                 Login
             </h2>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(onSubmit)} autoComplete='off'>
                 <div className='mb-4'>
                     <label className='block text-gray-700 text-sm font-bold mb-2' htmlFor='email'>Email
                     </label>
                     <input 
                     {...register("email", { required: true })}
-                    type='email' id='email' name='email' placeholder='example@mail.com'
+                    type='email' id='email' autoComplete='off' name='email' placeholder='example@mail.com'
                     className='shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow'>
                         </input>
                 </div>
