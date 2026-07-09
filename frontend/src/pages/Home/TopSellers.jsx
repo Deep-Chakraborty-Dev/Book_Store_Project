@@ -85,6 +85,7 @@ const TopSellers = () => {
           </Swiper>
             
               
+          </div>
     </div>
 
   )
