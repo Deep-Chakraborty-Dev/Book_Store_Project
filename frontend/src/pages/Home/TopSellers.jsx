@@ -30,12 +30,17 @@ const TopSellers = () => {
     
 
   return (
-    <div className='py-10 top-sellers-section'>
-        <h2 className='text-3xl font-semibold mb-6 top-sellers-title'>Top Sellers</h2>
-          <div className='mb-32 flex items-center top-sellers-filter'>
+    <div className='py-10 px-4 md:px-6 top-sellers-section'>
+        <div className='mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between'>
+          <div>
+            <h2 className='text-3xl sm:text-4xl font-semibold mb-2 top-sellers-title'>Top Sellers</h2>
+            <p className='text-sm text-slate-500 max-w-2xl'>Browse our best-rated books with a smooth swipe experience and filter by genre.</p>
+          </div>
+          <div className='flex flex-col gap-3 sm:flex-row sm:items-center top-sellers-filter'>
+            <label htmlFor='category' className='text-sm font-medium text-slate-700'>Filter by genre</label>
             <select
-            onChange={(e) => Setselectedcategory(e.target.value)}
-            name='category' id='category' className='border bg-amber-50 border-gray-300 rounded-md px-4 py-2 focus:outline-none top-sellers-select'>
+              onChange={(e) => Setselectedcategory(e.target.value)}
+              name='category' id='category' className='border bg-white border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:border-yellow-400 focus:ring-2 focus:ring-yellow-100 top-sellers-select'>
                 {
                   category.map((category,index ) => (
                     <option key={index} value={category}>{category}</option>
