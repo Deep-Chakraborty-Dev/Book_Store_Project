@@ -41,7 +41,7 @@ const Navbar = () => {
 
                 
             </div>
-        <div className='relative flex items-center sm:space-x-3 space-x-2'>
+        <div className='relative flex flex-row items-center sm:space-x-3 space-x-2'>
             {/*rigt side*/}
             <div>
                 {
